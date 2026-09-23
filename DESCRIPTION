@@ -1,0 +1,31 @@
+Package: deliberationmisinformation
+Type: Project
+Title: Deliberation and Misinformation
+Version: 0.0.1
+Authors@R: c(
+    person("Robert C.", "Luskin", role = "aut"),
+    person("Gaurav", "Sood", role = c("aut", "cre"), email = "gsood07@gmail.com"))
+Description: Data, analyses, and manuscript on whether deliberation dispels
+    misinformation, using Deliberative Polls with and without control groups.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    assertr,
+    digest,
+    dplyr,
+    forcats,
+    ggplot2,
+    purrr,
+    readr,
+    rlang,
+    sandwich,
+    scales,
+    stringr,
+    tibble,
+    tidyr
+Suggests:
+    lintr,
+    renv,
+    styler,
+    testthat
+Config/testthat/edition: 3

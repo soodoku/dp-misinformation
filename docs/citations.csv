@@ -1,0 +1,15 @@
+key,validation,doi_or_url,note
+chan2017,crossref_doi,10.1177/0956797617714579,
+cor2016,crossref_doi (reused verbatim),10.1093/pan/mpw010,
+fishkin2021,crossref_doi,10.1017/S0003055421000642,
+fishkin2025,crossref_doi,10.1017/S1537592724001749,
+graham2023,crossref_doi,10.1017/s0003055422000387,"Online July 2022; print APSR 117(1), Feb 2023"
+hansen2004,pdf,misinfo_dp/lit/Hansen2004.pdf,Title page and Table 6.1 (p. 158) checked against the thesis PDF
+lewandowsky2012,crossref_doi,10.1177/1529100612451018,
+luskin2002,crossref_doi (reused verbatim),10.1017/s0007123402000194,Not in ref list
+luskin2011,crossref_doi (reused verbatim),10.1017/s0022381611000132,"Ref list dates it 2012 ('Don't Know Means Don't Know', JOP); published 2011, 73(2)"
+luskin2026,repository,https://github.com/soodoku/waters-of-casablanca,Companion paper; draft cited the 2018 MPSA version
+luskin2026dp,repository,https://github.com/soodoku/dp-learning,Companion paper
+luskin2026mm,repository,https://github.com/soodoku/misinformation,Companion paper
+nyhan2010b,crossref_doi,10.1007/s11109-010-9112-2,Cited in 2012-2013 drafts
+wood2019,crossref_doi,10.1007/s11109-018-9443-y,Draft cited a working paper; published version

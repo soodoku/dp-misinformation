@@ -1,0 +1,20 @@
+poll,file,item,t1,t2,statement,key,basis
+UK Crime 1994,ukcrime.csv,life,lfact31raw,lfact32raw,More people are serving life sentences in Britain than in the rest of the European Community put together,true,"Key in Luskin, Fishkin and Jowell (2002) and the poll's codebook"
+UK Europe 1995,ukeu.csv,brussels_tax,pk31raw,pk32raw,Britain's income tax rates are decided in Brussels,false,Income tax is set by Parliament; EU competence over direct taxes is limited
+UK Europe 1995,ukeu.csv,libdem_eu,pk51raw,pk52raw,"Of the three British parties, the Liberal Democrats are least in favour of the European Union",false,The Liberal Democrats were the most pro-European of the three parties
+UK General Election 1997,ukbge.csv,unemployment,knowc1raw,knowc2raw,Unemployment in Britain is higher than in Germany,false,"Early 1997: about 7% in Britain (ILO), about 10% in Germany"
+UK Health 1998,ukhealth.csv,nhs_spending,sophc1r,sophc2r,"Even with inflation taken into account, spending on the NHS has doubled over the last 20 years",true,Poll codebook key
+UK Health 1998,ukhealth.csv,private_care,sophd1r,sophd2r,Most people use private medical treatment instead of the NHS,false,Poll codebook key
+UK Health 1998,ukhealth.csv,breast_screening,sophe1r,sophe2r,All British women get free breast cancer screening on the NHS,false,"NHS screening invited women aged 50-64; the poll's codebook notes the statement is technically false"
+Australia Republic 1999,aus.csv,flag,flagchg1r,flagchg2r,"If Australia becomes a republic, the flag will definitely change",false,The 1999 republic model left the flag to future decisions
+Australia Republic 1999,aus.csv,anthem,anthem1r,anthem2r,"If Australia becomes a republic, the national anthem will definitely change",false,The 1999 republic model did not change the anthem
+Australia Republic 1999,aus.csv,commonwealth_games,pargame1r,pargame2r,"If Australia becomes a republic, participation in the Commonwealth Games will definitely change",false,Republics compete in the Commonwealth Games
+Denmark Euro 2000,dk.csv,fines,t0pk1raw,t2pk1raw,"As a member of the monetary union, Denmark could be fined if its deficit is too large",true,Stability and Growth Pact; Hansen (2004) p. 121
+Denmark Euro 2000,dk.csv,interest_rates,t0pk2raw,t2pk2raw,Denmark can decide its own interest rates if it joins the monetary union,false,Monetary policy passes to the European Central Bank
+Denmark Euro 2000,dk.csv,taxation,t0pk3raw,t2pk3raw,Denmark can decide its own rates of taxation if it joins the single currency,true,Taxation stays with member states
+Denmark Euro 2000,dk.csv,coins,t0pk6raw,t2pk6raw,The euro coins will have a national side,true,Euro coins have a common and a national side
+By the People 2004,btp04GE.csv,iraq_911,t1know3raw,t3know3raw,Iraq was directly involved in the attacks on the World Trade Center and the Pentagon on 9/11,false,9/11 Commission (2004)
+By the People 2004,btp04GE.csv,wmd,t1know4raw,t3know4raw,Large quantities of weapons of mass destruction have been found in Iraq,false,Iraq Survey Group (Duelfer Report 2004)
+By the People 2004,btp04GE.csv,drug_prices,t1know5raw,t3know5raw,"On average, prescription drugs cost more in Canada than in the U.S.",false,Canadian prices were lower
+By the People 2004,btp04GE.csv,bush_vietnam,t1know6raw,t3know6raw,"During the Vietnam War, George W. Bush served in the Texas Air National Guard",true,Service record
+By the People 2004,btp04GE.csv,kerry_vietnam,t1know7raw,t3know7raw,"During the Vietnam War, John Kerry was a decorated officer serving in Vietnam",true,Service record
