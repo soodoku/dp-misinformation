@@ -1,5 +1,3 @@
-purrr::walk(list.files("R", full.names = TRUE), source)
-
 changes <- read_tab("item_changes.csv")
 pooled <- read_tab("pooled_change.csv")
 conv <- read_tab("conversion.csv")
@@ -56,9 +54,9 @@ values <- c(
   agreeEffect = sprintf("%.1f", agree2$estimate), agreeLaterEffect = sprintf("%.1f", agree3$estimate),
   agreeLaterLower = sprintf("%.1f", agree3$lower), agreeLaterUpper = sprintf("%.1f", agree3$upper)
 )
-write_macros(values, "tabs/macros.tex")
+write_macros(values, file.path(TABLE_DIR, "macros.tex"))
 
-items <- read_strict_csv(file.path("docs", "items.csv"))
+items <- read_strict_csv(ITEMS_FILE)
 items |>
   dplyr::mutate(
     poll = dplyr::if_else(duplicated(poll), "", poll),
@@ -66,4 +64,4 @@ items |>
     key = dplyr::if_else(key, "T", "F")
   ) |>
   dplyr::select(poll, statement, key) |>
-  write_table("tabs/items.tex", "lp{10cm}c", c("Poll", "Statement", "Key"))
+  write_table(file.path(TABLE_DIR, "items.tex"), TABLE_STYLE$items_align, c("Poll", "Statement", "Key"))

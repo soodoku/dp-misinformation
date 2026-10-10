@@ -1,10 +1,3 @@
-wilson <- function(successes, n, z = qnorm(0.975)) {
-  p <- successes / n
-  centre <- (p + z^2 / (2 * n)) / (1 + z^2 / n)
-  half <- z * sqrt(p * (1 - p) / n + z^2 / (4 * n^2)) / (1 + z^2 / n)
-  tibble::tibble(estimate = p, lower = centre - half, upper = centre + half)
-}
-
 # Share answering incorrectly before and after, and the paired change.
 item_changes <- function(panel) {
   panel |>
@@ -65,39 +58,6 @@ pooled_change <- function(panel) {
   )
 }
 
-# America in One Room 2019: "About how many undocumented immigrants are in the
-# US?" 10, 20, 30, or 40 million; about 10 to 11 million lived in the U.S.
-# "Couldn't say," skipped, and refused count as not answering.
-read_a1r_immigrants <- function(path) {
-  data <- readr::read_tsv(path, show_col_types = FALSE)
-  state <- \(x) dplyr::case_when(x == 1 ~ "correct", x %in% 2:4 ~ "incorrect", .default = "dk")
-  tibble::tibble(
-    study = "America in One Room 2019", id = seq_len(nrow(data)), treated = data$CONDITION,
-    panel = data$POST == 1,
-    t1 = state(data$PK3), t2 = dplyr::if_else(data$POST == 1, state(data$T2PK3), NA_character_),
-    weight = dplyr::if_else(data$CONDITION == 1, data$WEIGHT_DELEGATE, data$WEIGHT_CONTROL)
-  ) |>
-    dplyr::filter(panel)
-}
-
-# America in One Room: Climate 2021. "Rising temperatures are caused by human
-# activities that emit greenhouse gases," 0 (strongly disagree) to 10
-# (strongly agree). Confident denial is a rating of 0 (strict) or 0-1
-# (lenient); "couldn't say" and skipped count as not answering.
-read_climate_denial <- function(path) {
-  data <- readr::read_tsv(path, show_col_types = FALSE)
-  rating <- \(x) dplyr::if_else(x %in% 0:10, as.numeric(x), NA_real_)
-  attended <- data$P_DELEGATE == 1
-  control <- data$P_TREATMENT == 0 & data$P_DELEGATE == 0
-  tibble::tibble(
-    study = "America in One Room: Climate 2021", id = seq_len(nrow(data)),
-    treated = as.numeric(data$P_TREATMENT == 1), panel = attended | control,
-    r1 = rating(data$Q1B), r2 = rating(data$T2Q1B), r3 = rating(data$T3Q1B),
-    weight = data$WEIGHT1
-  ) |>
-    dplyr::filter(panel)
-}
-
 # ANCOVA on the randomized (A1R: invited vs uninvited) comparison: the later
 # outcome on treatment and the baseline outcome.
 ancova <- function(data, outcome, baseline, weights = NULL) {
@@ -116,13 +76,13 @@ ancova <- function(data, outcome, baseline, weights = NULL) {
   )
 }
 
-controlled_effects <- function(paths) {
-  a1r <- read_a1r_immigrants(paths[["a1r"]]) |>
+controlled_effects <- function(data) {
+  a1r <- data$a1r |>
     dplyr::mutate(
       wrong1 = as.numeric(t1 == "incorrect"), wrong2 = as.numeric(t2 == "incorrect"),
       right1 = as.numeric(t1 == "correct"), right2 = as.numeric(t2 == "correct")
     )
-  climate <- read_climate_denial(paths[["climate"]]) |>
+  climate <- data$climate |>
     dplyr::mutate(
       deny1 = as.numeric(r1 == 0), deny2 = as.numeric(r2 == 0), deny3 = as.numeric(r3 == 0),
       lenient1 = as.numeric(r1 <= 1), lenient2 = as.numeric(r2 <= 1), lenient3 = as.numeric(r3 <= 1)
@@ -149,3 +109,20 @@ controlled_effects <- function(paths) {
   }) |>
     purrr::list_rbind()
 }
+
+write_output <- \(x, name) readr::write_csv(x, file.path(TABLE_DIR, name), na = "")
+
+prepared <- readRDS(PREPARED_DATA_FILE)
+panel <- prepared$panel
+write_output(item_changes(panel), "item_changes.csv")
+write_output(transitions(panel), "transitions.csv")
+write_output(conversion(panel), "conversion.csv")
+write_output(pooled_change(panel), "pooled_change.csv")
+panel |>
+  dplyr::group_by(poll) |>
+  dplyr::summarise(
+    answers = dplyr::n(), respondents = dplyr::n_distinct(respondent), items = dplyr::n_distinct(item)
+  ) |>
+  write_output("polls.csv")
+
+write_output(controlled_effects(prepared), "controlled_effects.csv")

@@ -13,3 +13,4 @@ ms/*.log
 ms/*.out
 ms/*.xdv
 data/cache/
+data/derived/
