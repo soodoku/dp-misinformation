@@ -13,6 +13,15 @@ show whether people who begin wrong are harder to move than those who admit
 ignorance. [The Waters of Casablanca](https://github.com/finite-sample/know_casablanca)
 explains this measurement distinction.
 
+This project also owns the question from the historical `otherpk` drafts of
+whether wrong answers become explicit admissions of uncertainty. The current
+analysis reports wrong-to-right, wrong-to-wrong, and wrong-to-don't-know
+transitions. In the older source release, the don't-know category combines
+explicit don't-know responses with no answer. This is an accepted data
+limitation: the combined category does not establish acknowledged uncertainty.
+The related `dp_otherpk` project focuses on learning facts that favor an
+initially opposed position.
+
 ## Data and research design
 
 The analysis follows 19 misinformation-type items through seven Deliberative
